@@ -80,13 +80,13 @@
 </div>
 
 <h3>1. 開発者が収集する情報</h3>
-<p><strong>ありません。</strong>本アプリにはユーザー登録・アカウント・ログイン機能がなく、アプリ内課金・広告・アクセス解析・クラッシュレポート送信のいずれも組み込んでいません。お客様のお名前・メールアドレス・電話番号・端末識別子・IPアドレスなどを取得する仕組みは存在しません。</p>
+<p><strong>ありません。</strong>本アプリにはユーザー登録・アカウント・ログイン機能がなく、アプリ内課金・広告・アクセス解析・クラッシュレポート送信のいずれも組み込んでいません。お客様のお名前・メールアドレス・電話番号・端末識別子などを開発者が取得する仕組みは存在しません。</p>
 
-<h3>2. 端末内でのみ利用する情報と、その目的</h3>
+<h3>2. 端末内でのみ利用・保存する情報と、その目的</h3>
 <div class="wrap">
 <table>
   <thead>
-    <tr><th>利用する情報</th><th>目的</th><th>取り扱い</th></tr>
+    <tr><th>情報</th><th>目的</th><th>取り扱い</th></tr>
   </thead>
   <tbody>
     <tr>
@@ -95,9 +95,9 @@
       <td>常時録画は行わず、映像は判定処理のためだけに端末内で使われ、処理後は保持されません。マイクは使用しません（音声を無効にしてカメラを開きます）。</td>
     </tr>
     <tr>
-      <td>証拠スナップショット<br>（静止画・任意）</td>
+      <td>証拠スナップショット<br>（静止画）</td>
       <td>判定が誤っていないかを後から目で確かめられるようにする</td>
-      <td>消灯などを検知した地点の静止画を、数秒前までさかのぼって数枚、端末内のアプリ専用領域に保存します。既定で有効ですが、設定画面でいつでも停止・消去できます。写真アプリ（フォトライブラリ）へは保存しません。</td>
+      <td>消灯などを検知した地点の静止画を、数秒前までさかのぼって数枚、端末内のアプリ専用領域に保存します。既定で有効ですが、設定画面でいつでも停止・消去できます。写真アプリ（フォトライブラリ）へは保存しません。<strong>含まれる情報は下記3をご覧ください。</strong></td>
     </tr>
     <tr>
       <td>位置情報<br>（アプリ使用中のみ）</td>
@@ -109,28 +109,44 @@
       <td>点灯・消灯の判定履歴の記録、利用者ご自身によるメモ・目視点検結果の記録</td>
       <td>端末内のローカルデータベースにのみ保存されます。クラウドとの同期は行いません。</td>
     </tr>
+    <tr>
+      <td>診断ログ</td>
+      <td>判定の精度を後から検証・改善するための技術的な記録</td>
+      <td>走行中の位置・進行方位・速度・距離標・検出結果などを、端末内のローカルデータベースにのみ記録します（<strong>走行の軌跡にあたる情報が含まれます</strong>）。外部へ送信されることはありません。設定画面の「詳細設定（開発者向け）」からいつでも消去できます。</td>
+    </tr>
   </tbody>
 </table>
 </div>
 
-<h3>3. 保存した写真の書き出しについて</h3>
+<h3>3. 証拠スナップショットに含まれる情報について（重要）</h3>
+<p>証拠スナップショットは<strong>公道を走行中に前方を撮影した静止画</strong>です。次の情報が画像やファイル名に含まれます。</p>
+<ul>
+  <li>撮影日時</li>
+  <li>路線名・距離標（キロポスト）・上り／下りの別・判定結果（画像の下部に文字として焼き込まれます）</li>
+  <li>カメラに写った前方の風景（<strong>他者の車両・ナンバープレート・歩行者などが写り込む場合があります</strong>）</li>
+</ul>
+<p>これらの画像は<strong>お客様の端末内にのみ保存され、開発者が閲覧することはできません</strong>。ただし、お客様ご自身が下記4の書き出し機能で画像を第三者へ共有された場合、上記の情報も一緒に相手へ渡ります。共有の際はご注意ください。</p>
+
+<h3>4. 保存した写真の書き出しについて</h3>
 <p>ログ画面から、保存した証拠スナップショットをZIPファイルにまとめて書き出すことができます。これは<strong>利用者ご自身が共有先（メール・クラウド保存アプリなど）を選んで実行する操作</strong>であり、本アプリが自動的にどこかへ送信することはありません。</p>
 
-<h3>4. 第三者に送信される情報</h3>
-<p>本アプリが外部と通信するのは、<strong>地図を表示しているときだけ</strong>です。</p>
+<h3>5. 第三者に送信される情報</h3>
+<p>開発者が運用するサーバーは存在せず、お客様のデータが開発者へ送られることはありません。</p>
+<p><strong>本アプリ自身が行う外部通信は、地図を表示するときの地図画像（タイル）の取得だけです。</strong></p>
 <ul>
-  <li>地図画面を表示している間、表示範囲の地図画像（タイル）を取得するために、位置情報がOSの地図サービスへ送られます。
+  <li>地図を表示している画面（巡回画面の「地図」タブ、対象・メモ・手動・連動の各画面、不点灯マップ）では、表示範囲の地図画像を取得するために、その範囲の位置情報が地図サービスへ送られます。
     <ul>
       <li>Android：Google Maps SDK（<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google のプライバシーポリシー</a>に従って取り扱われます）</li>
       <li>iOS：Apple の MapKit（<a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple のプライバシーポリシー</a>に従って取り扱われます）</li>
     </ul>
   </li>
-  <li>この通信は<strong>Google／Appleとの間で直接行われ</strong>、開発者を経由しません。開発者はその内容を受け取りません。</li>
-  <li>地図を表示していない間（カメラ画面を表示中など）、この通信は発生しません。</li>
+  <li>この通信は<strong>Google または Apple との間で直接行われ</strong>、開発者を経由しません。開発者はその内容を受け取りません。</li>
+  <li>開発者は、これらの提供者が本ポリシーと同等以上の水準で情報を保護していることを、各社の公開するプライバシーポリシーにより確認しています。</li>
+  <li><strong>補足：</strong>Android版には、地図を表示するためにGoogleが提供するGoogle Maps SDK（Google Play開発者サービスの一部）が組み込まれています。このSDKは、地図の表示とは別に、自身の初期化・構成のためにGoogleと通信することがあります。これはGoogleが提供する部品の動作であり、開発者が指示したり、その内容を受け取ったりするものではありません。取り扱いはGoogleのプライバシーポリシーに従います。</li>
 </ul>
-<p>照明柱の座標データはアプリに同梱されたオフラインデータであり、判定の照合はすべて端末内で行われます。通信は発生しません。</p>
+<p>照明柱の座標データはアプリに同梱されたオフラインデータであり、点灯・消灯の判定はすべて端末内で行われます。この判定に通信は発生しません。</p>
 
-<h3>5. 本アプリが「行わないこと」</h3>
+<h3>6. 本アプリが「行わないこと」</h3>
 <p>誤解を避けるため、明示的に記載します。本アプリは以下を一切行いません。</p>
 <ul>
   <li>ユーザー登録・アカウント作成・ログイン</li>
@@ -145,19 +161,24 @@
   <li>開発者が運用するサーバーへのデータ送信（そのようなサーバーは存在しません）</li>
 </ul>
 
-<h3>6. 権限の許可・取り消し</h3>
+<h3>7. 権限の許可・取り消し</h3>
 <p>カメラ・位置情報の各権限は、端末の「設定」アプリからいつでも変更・取り消しできます。権限を取り消した場合、点灯・消灯の判定機能は利用できなくなりますが、アプリ自体は引き続き起動します。</p>
 
-<h3>7. 子どものプライバシー</h3>
+<h3>8. 子どものプライバシー</h3>
 <p>本アプリは特定の年齢層を対象としたものではなく、開発者はいかなる年齢の利用者からも個人情報を収集しません。</p>
 
-<h3>8. データの削除</h3>
-<p>開発者はお客様のデータを保持していないため、開発者に対する削除請求の対象となるデータはありません。端末内のデータは、設定画面から証拠スナップショットや診断ログを消去する、または本アプリをアンインストールすることで削除できます。</p>
+<h3>9. データの削除</h3>
+<p>開発者はお客様のデータを保持していないため、開発者に対する削除請求の対象となるデータはありません。端末内のデータは、次のいずれかの方法で削除できます。</p>
+<ul>
+  <li>設定画面の「保存済みの写真」→「消去」で、証拠スナップショットをまとめて削除する</li>
+  <li>設定画面の「詳細設定（開発者向け）」→「診断ログ」→「消去」で、診断ログを削除する</li>
+  <li>本アプリをアンインストールする（端末内のすべてのデータが削除されます）</li>
+</ul>
 
-<h3>9. 本ポリシーの変更</h3>
+<h3>10. 本ポリシーの変更</h3>
 <p>本ポリシーを変更する場合は、このページを更新し、冒頭の「最終更新日」を改めます。</p>
 
-<h3>10. お問い合わせ</h3>
+<h3>11. お問い合わせ</h3>
 <p>本ポリシーに関するお問い合わせは、以下までご連絡ください。</p>
 <p><a href="mailto:hagi.taka1205@gmail.com">hagi.taka1205@gmail.com</a></p>
 
@@ -172,9 +193,9 @@
 </div>
 
 <h3>1. Information the developer collects</h3>
-<p><strong>None.</strong> The App has no user registration, no account, and no login. It contains no in-app purchases, no advertising, no analytics, and no crash reporting. There is no mechanism in the App that would obtain your name, email address, phone number, device identifier, or IP address.</p>
+<p><strong>None.</strong> The App has no user registration, no account, and no login. It contains no in-app purchases, no advertising, no analytics, and no crash reporting. There is no mechanism by which the developer would obtain your name, email address, phone number, or device identifier.</p>
 
-<h3>2. Information used on your device, and why</h3>
+<h3>2. Information used and stored on your device, and why</h3>
 <div class="wrap">
 <table>
   <thead>
@@ -187,9 +208,9 @@
       <td>The App does not continuously record. Frames are used on device for judgement only and are not retained afterwards. The microphone is never used (the camera is opened with audio disabled).</td>
     </tr>
     <tr>
-      <td>Evidence snapshots<br>(still images, optional)</td>
+      <td>Evidence snapshots<br>(still images)</td>
       <td>Letting you visually double-check a judgement later</td>
-      <td>When the App detects a light that may be off, it saves a few still images taken a few seconds before that point, in the App's own private storage on the device. This is enabled by default but can be turned off, and the photos deleted, at any time from Settings. Photos are never saved to your Photos app / camera roll.</td>
+      <td>When the App detects a light that may be off, it saves a few still images taken a few seconds before that point, in the App's own private storage on the device. This is enabled by default but can be turned off, and the photos deleted, at any time from Settings. Photos are never saved to your Photos app / camera roll. <strong>See section 3 for what they contain.</strong></td>
     </tr>
     <tr>
       <td>Location<br>(While Using the App only)</td>
@@ -201,28 +222,44 @@
       <td>Recording the on/off judgement history, and any notes or manual inspection results you enter</td>
       <td>Stored only in a local database on the device. Never synced to any cloud service.</td>
     </tr>
+    <tr>
+      <td>Diagnostic log</td>
+      <td>Technical records used to verify and improve detection accuracy after a drive</td>
+      <td>Records your position, heading, speed, distance-marker readout and detection results in a local database on the device (<strong>this amounts to a trace of the route you drove</strong>). It is never transmitted. You can erase it at any time from Settings → "Advanced (for developers)".</td>
+    </tr>
   </tbody>
 </table>
 </div>
 
-<h3>3. Exporting saved photos</h3>
+<h3>3. What an evidence snapshot contains (important)</h3>
+<p>An evidence snapshot is <strong>a still photograph of the road ahead, taken while driving on a public road</strong>. Each one carries the following, in the image itself or in its filename:</p>
+<ul>
+  <li>The date and time it was taken</li>
+  <li>The route name, distance marker (kilometre post), travel direction and judgement result — burned into the bottom of the image as text</li>
+  <li>Whatever the camera saw ahead, <strong>which may include other vehicles, licence plates and pedestrians</strong></li>
+</ul>
+<p>These images <strong>stay on your device and the developer cannot see them</strong>. However, if you choose to export and share them using the feature described in section 4, everything listed above travels with them. Please consider this before sharing.</p>
+
+<h3>4. Exporting saved photos</h3>
 <p>From the log screen, you can bundle your saved evidence snapshots into a ZIP file and export them. This is an action <strong>you initiate yourself</strong>, choosing your own destination (e.g. email, a cloud storage app). The App never sends this data anywhere automatically.</p>
 
-<h3>4. Information sent to third parties</h3>
-<p>The App communicates with the outside world in <strong>exactly one situation: drawing the map</strong>.</p>
+<h3>5. Information sent to third parties</h3>
+<p>The developer operates no server, and none of your data is ever sent to the developer.</p>
+<p><strong>The only network communication the App itself initiates is fetching map tiles when a map is displayed.</strong></p>
 <ul>
-  <li>While the map screen is shown, the region being displayed is sent to the operating system's map service in order to fetch map tiles:
+  <li>On screens that show a map (the "Map" tab of the patrol screen; the target, notes, manual, linked-checklist screens; and the unlit-light map), the region being displayed is sent to a map service in order to fetch map tiles:
     <ul>
       <li>Android: the Google Maps SDK, handled under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a></li>
       <li>iOS: Apple MapKit, handled under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a></li>
     </ul>
   </li>
   <li>This request goes <strong>directly to Google or Apple</strong>. It does not pass through the developer, and the developer receives nothing from it.</li>
-  <li>While the map is not shown (for example, while the camera screen is displayed), this does not happen.</li>
+  <li>The developer has confirmed, from these providers' published privacy policies, that they afford protection equal to or better than that described in this policy.</li>
+  <li><strong>Note:</strong> the Android build embeds the Google Maps SDK (part of Google Play services) in order to draw maps. Separately from drawing a map, that SDK may communicate with Google for its own initialisation and configuration. That is the behaviour of a component supplied by Google; the developer neither directs it nor receives anything from it, and it is governed by Google's Privacy Policy.</li>
 </ul>
-<p>The roadway-light coordinate data is an offline dataset bundled inside the App; all matching is performed on device and involves no network traffic.</p>
+<p>The roadway-light coordinate data is an offline dataset bundled inside the App; all on/off judgement is performed on device and involves no network traffic.</p>
 
-<h3>5. What the App does <em>not</em> do</h3>
+<h3>6. What the App does <em>not</em> do</h3>
 <p>Stated explicitly to avoid any ambiguity. The App does not:</p>
 <ul>
   <li>offer user registration, accounts or logins;</li>
@@ -237,19 +274,24 @@
   <li>transmit data to any developer-operated server — no such server exists.</li>
 </ul>
 
-<h3>6. Granting and revoking permissions</h3>
+<h3>7. Granting and revoking permissions</h3>
 <p>Camera and location permissions can be changed or revoked at any time in the device's Settings app. Revoking a permission disables the light-detection feature, but the App still launches and runs.</p>
 
-<h3>7. Children's privacy</h3>
+<h3>8. Children's privacy</h3>
 <p>The App is not directed at any particular age group, and the developer collects no personal information from users of any age.</p>
 
-<h3>8. Deleting your data</h3>
-<p>Because the developer holds none of your data, there is nothing for the developer to delete on request. Data held on your device can be removed from the Settings screen (evidence snapshots, diagnostic logs) or by uninstalling the App.</p>
+<h3>9. Deleting your data</h3>
+<p>Because the developer holds none of your data, there is nothing for the developer to delete on request. Data held on your device can be removed in any of the following ways:</p>
+<ul>
+  <li>Settings → "Saved photos" → "Erase", to delete all evidence snapshots</li>
+  <li>Settings → "Advanced (for developers)" → "Diagnostic log" → "Erase", to delete the diagnostic log</li>
+  <li>Uninstalling the App, which removes all of its data from the device</li>
+</ul>
 
-<h3>9. Changes to this policy</h3>
+<h3>10. Changes to this policy</h3>
 <p>If this policy changes, this page will be updated and the "Last updated" date at the top revised.</p>
 
-<h3>10. Contact</h3>
+<h3>11. Contact</h3>
 <p>If you have any questions about this policy, please contact:</p>
 <p><a href="mailto:hagi.taka1205@gmail.com">hagi.taka1205@gmail.com</a></p>
 
